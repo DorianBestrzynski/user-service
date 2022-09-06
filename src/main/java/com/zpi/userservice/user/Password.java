@@ -1,5 +1,4 @@
 package com.zpi.userservice.user;
-import jdk.jfr.Name;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -12,12 +11,16 @@ import java.io.Serializable;
 public class Password implements Serializable  {
 
     @Id
-    @OneToOne
+    @OneToOne()
     @JoinColumn(name = "app_user_id")
-    private AppUser app_user;
+    private AppUser appUser;
 
     @Column(name = "hashed_password")
     private String hashedPassword;
+
+    public Password(String hashedPassword){
+        this.hashedPassword = hashedPassword;
+    }
 
 
 
