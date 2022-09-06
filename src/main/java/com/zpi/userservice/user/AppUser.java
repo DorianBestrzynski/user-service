@@ -18,7 +18,7 @@ public class AppUser {
     @SequenceGenerator(
             name = "user_sequence",
             sequenceName = "user_sequence", allocationSize = 10)
-    @Column(unique = true, nullable = false)
+    @Column(name = "user_id", unique = true, nullable = false)
     private Long userId;
 
     @Column(name = "username", nullable = false, length = 50)
@@ -39,7 +39,7 @@ public class AppUser {
     @Column(name = "registration_date", nullable = false)
     private LocalDateTime registrationDate;
 
-    @OneToOne(cascade=CascadeType.PERSIST, mappedBy = "app_user")
+    @OneToOne(cascade=CascadeType.ALL, mappedBy = "appUser")
     private Password password;
 
     public AppUser(String username, String email, String firstName, String surname, LocalDate birthday, LocalDateTime registrationDate, Password password){
