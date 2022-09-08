@@ -1,4 +1,5 @@
 package com.zpi.userservice.user;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -13,6 +14,7 @@ public class Password implements Serializable  {
     @Id
     @OneToOne()
     @JoinColumn(name = "app_user_id")
+    @JsonBackReference
     private AppUser appUser;
 
     @Column(name = "hashed_password")

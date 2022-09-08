@@ -1,4 +1,5 @@
 package com.zpi.userservice.user;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -39,7 +40,8 @@ public class AppUser {
     @Column(name = "registration_date", nullable = false)
     private LocalDateTime registrationDate;
 
-    @OneToOne(cascade=CascadeType.ALL, mappedBy = "appUser")
+    @JsonManagedReference
+    @OneToOne(cascade=CascadeType.ALL, mappedBy = "appUser", fetch = FetchType.LAZY)
     private Password password;
 
     public AppUser(String username, String email, String firstName, String surname, LocalDate birthday, LocalDateTime registrationDate, Password password){
